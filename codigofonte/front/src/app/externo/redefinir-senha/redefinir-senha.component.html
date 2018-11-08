@@ -1,0 +1,37 @@
+<div class="card card-login mx-auto mt-5">
+  <div class="card-header">Redefinição de Senha</div>
+  <div class="card-body">
+    <form [formGroup]="form" novalidate (submit)="salvar(form.value);">
+
+      <div class="form-group">
+        <label for="txtSenha">Nova senha</label>
+        <input class="form-control" id="txtSenha" type="password"
+               [(ngModel)]="usuario.senha" formControlName="senha"
+               [class.is-valid]="form.controls.senha.touched && form.controls.senha.valid"
+               [class.is-invalid]="form.controls.senha.touched && form.controls.senha.invalid"/>
+        <div class="invalid-feedback" *ngIf="form.controls.senha.invalid && form.controls.senha.touched">
+          <p *ngIf="form.controls.senha.errors?.required">Campo obrigatório</p>
+          <p *ngIf="form.controls.senha.errors?.maxlength">Limite de 50 caracteres</p>
+          <p *ngIf="form.controls.senha.errors?.minlength">Mínimo de 6 caracteres</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="txtRepetirSenha">Confirme a nova senha</label>
+        <input class="form-control" id="txtRepetirSenha" type="password"
+               [(ngModel)]="usuario.repetirSenha" formControlName="repetir_senha"
+               [class.is-valid]="form.controls.repetir_senha.touched && form.controls.repetir_senha.valid"
+               [class.is-invalid]="form.controls.repetir_senha.touched && form.controls.repetir_senha.invalid"/>
+        <div class="invalid-feedback" *ngIf="form.controls.repetir_senha.invalid && form.controls.repetir_senha.touched">
+          <p *ngIf="form.controls.repetir_senha.errors?.required">Campo obrigatório</p>
+          <p *ngIf="form.controls.repetir_senha.errors?.maxlength">Limite de 50 caracteres</p>
+          <p *ngIf="form.controls.repetir_senha.errors?.minlength">Mínimo de 6 caracteres</p>
+          <p *ngIf="form.controls.repetir_senha.errors?.equalTo">As senhas devem ser iguais</p>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="submit">Salvar</button>
+
+    </form>
+  </div>
+</div>

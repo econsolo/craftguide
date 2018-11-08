@@ -1,0 +1,15 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li *ngFor="let r of routes" [ngClass]="{'active': r.path === routes[routes.length - 1].path}" class="breadcrumb-item">
+
+      <a href="javascript:void(0);" (click)="irPara(r.path);" *ngIf="r.path !== routes[routes.length - 1].path">
+        {{ r.data.name }}
+      </a>
+
+      <span *ngIf="r.path === routes[routes.length - 1].path">
+        {{ r.data.name }}
+      </span>
+
+    </li>
+  </ol>
+</nav>

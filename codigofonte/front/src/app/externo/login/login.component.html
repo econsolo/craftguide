@@ -1,0 +1,75 @@
+<div style="height: 100%;width:100%;margin:0;display: flex;">
+  <div class="card card-login mx-auto mt-5" style="margin: auto;width: 50%;">
+    <div class="card-header text-center">Entre com suas credenciais</div>
+    <div class="card-body">
+      <form [formGroup]="form" novalidate (submit)="entrar(form.value);">
+
+        <div class="form-group">
+          <label for="txtUsuario">Usuário</label>
+          <input class="form-control" id="txtUsuario" type="text" aria-describedby="usuario" placeholder="Entre com seu usuário"
+            maxlength="50" [(ngModel)]="usuario.login" formControlName="login" [class.is-valid]="form.controls.login.touched && form.controls.login.valid"
+            [class.is-invalid]="form.controls.login.touched && form.controls.login.invalid" />
+          <div class="invalid-feedback" *ngIf="form.controls.login.invalid && form.controls.login.touched">
+            <p *ngIf="form.controls.login.errors?.required">Campo obrigatório</p>
+            <p *ngIf="form.controls.login.errors?.maxlength">Limite de 50 caracteres</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="txtSenha">Senha</label>
+          <input class="form-control" id="txtSenha" type="password" placeholder="Entre com sua senha" [(ngModel)]="usuario.senha"
+            formControlName="senha" [class.is-valid]="form.controls.senha.touched && form.controls.senha.valid"
+            [class.is-invalid]="form.controls.senha.touched && form.controls.senha.invalid" />
+          <div class="invalid-feedback" *ngIf="form.controls.senha.invalid && form.controls.senha.touched">
+            <p *ngIf="form.controls.senha.errors?.required">Campo obrigatório</p>
+            <p *ngIf="form.controls.senha.errors?.maxlength">Limite de 50 caracteres</p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit">Entrar</button>
+
+      </form>
+      <div class="text-center">
+        <a class="d-block small mt-3" href="javascript:void(0);" data-toggle="modal" data-target="#modalRedefinirSenha">
+          Esqueceu sua senha?
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="modalRedefinirSenha" tabindex="-1" role="dialog" aria-labelledby="Redefinir Senha"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <form [formGroup]="formRedefinirSenha" novalidate (submit)="enviarEmail(formRedefinirSenha.value.email);">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Redefinir Senha</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label for="txtEmail">E-mail</label>
+              <input class="form-control" id="txtEmail" type="email" aria-describedby="email" maxlength="50"
+                formControlName="email" [class.is-valid]="formRedefinirSenha.controls.email.touched && formRedefinirSenha.controls.email.valid"
+                [class.is-invalid]="formRedefinirSenha.controls.email.touched && formRedefinirSenha.controls.email.invalid" />
+              <div class="invalid-feedback" *ngIf="formRedefinirSenha.controls.email.invalid && formRedefinirSenha.controls.email.touched">
+                <p *ngIf="formRedefinirSenha.controls.email.errors?.required">Campo obrigatório</p>
+                <p *ngIf="formRedefinirSenha.controls.email.errors?.maxlength">Limite de 50 caracteres</p>
+                <p *ngIf="formRedefinirSenha.controls.email.errors?.email">E-mail inválido</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="formRedefinirSenha.invalid">Enviar e-mail</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+.autocomplete {
+  position: absolute;
+  z-index: 1;
+  width: 90%;
+  max-height: 10px;
+}

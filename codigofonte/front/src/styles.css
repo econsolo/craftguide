@@ -1,0 +1,25 @@
+.invalid-feedback p {
+    margin-bottom: -2px !important;
+  }
+  
+  .invalid-feedback p:before {
+    content: "• "
+  }
+  
+  .click {
+    cursor: pointer;
+  }
+  
+  .spacing {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+  
+  .width-100px {
+    width: 100px;
+  }
+  
+  .remove-border {
+    border: 0px !important;
+  }
+  

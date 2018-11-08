@@ -1,0 +1,29 @@
+<div [formGroup]="form">
+  <label for="idPessoa" class="control-label">Pessoa</label>
+  <div class="input-group">
+    <input type="text" class="form-control" id="idPessoa"
+           placeholder="Digite o Nome..." autocomplete="off"
+           (keyup)="buscarPessoasPorNome(pessoa.nome)"
+           formControlName="{{ formControlName }}"
+           [(ngModel)]="pessoa.nome" maxlength="80"
+           [class.is-valid]="isInputValido()"
+           [class.is-invalid]="isInputInvalido()">
+    <span class="input-group-addon" id="basic-addon2">
+      <a href="javascript:void(0);" class="text-danger" (click)="removerPessoaSelecionada();">
+        <i class="fa fa-remove" aria-hidden="true"></i>
+      </a>
+    </span>
+  </div>
+
+  <div class="list-group autocomplete">
+    <a href="javascript:void(0);" *ngFor="let p of pessoas" (click)="selecionarPessoa(p);"
+       class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <h6 class="mb-1">{{ p.nome }}</h6>
+        <small>{{ p.idade }} Anos</small>
+      </div>
+      <small class="mb-1">CPF: {{ p.cpf | cpf }}</small>
+    </a>
+  </div>
+
+</div>
